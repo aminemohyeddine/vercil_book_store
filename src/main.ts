@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.enableCors({
     origin: [
-      /^(https?:\/\/([^\.]*\.)?storied-puppy-f7ef20.netlify\.app)$/i,
+      /^(https?:\/\/([^\.]*\.)?main--storied-puppy-f7ef20.netlify\.app)$/i,
       /^(https?:\/\/([^\.]*\.)?localhost:3000)$/i,
     ],
     allowedHeaders:
