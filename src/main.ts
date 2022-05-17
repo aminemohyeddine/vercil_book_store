@@ -3,20 +3,16 @@ import { AppModule } from './app.module';
 import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  var whitelist = [
-    'https://sweet-eclair-6fba13.netlify.app',
-    'http://localhost:3000',
-  ];
-
   const app = await NestFactory.create(AppModule, { cors: true });
   app.enableCors({
-    origin: function (origin, callback) {
-      if (!origin || whitelist.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: [
+      /^(https?:\/\/([^\.]*\.)?6283c6f24a6f022e6d37a3a3--storied-puppy-f7ef20.netlify\.app)$/i,
+      /^(https?:\/\/([^\.]*\.)?localhost:3000\.com)$/i,
+    ],
+    allowedHeaders:
+      'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe',
+    methods: 'GET,PUT,POST,DELETE,UPDATE,OPTIONS',
+    credentials: true,
   });
   app.use(cookieParser());
   await app.listen(parseInt(process.env.PORT) || 5000);
