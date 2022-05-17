@@ -9,8 +9,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { BookModule } from './books/books.module';
-import { RedisModule } from 'nestjs-redis';
-import * as redisStore from 'cache-manager-redis-store';
+// import { RedisModule } from 'nestjs-redis';
+// import * as redisStore from 'cache-manager-redis-store';
 import { LoggingMiddleware } from './security/verifyUser';
 import { JwtModule } from '@nestjs/jwt';
 import { OrdersModule } from './orders/orders.module';
@@ -22,14 +22,14 @@ import { OrdersModule } from './orders/orders.module';
       signOptions: { expiresIn: '1h' },
     }),
     CacheModule.register({
-      store: redisStore,
-      socket: {
-        host: 'localhost',
-        port: 6379,
-      },
-      ttl: 800,
-      max: 1000,
-      isGlobal: true,
+      // store: redisStore,
+      // socket: {
+      //   host: 'localhost',
+      //   port: 6379,
+      // },
+      // ttl: 800,
+      // max: 1000,
+      // isGlobal: true,
     }),
     AuthModule,
     BookModule,

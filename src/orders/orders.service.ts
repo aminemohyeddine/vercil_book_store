@@ -21,12 +21,12 @@ import { OrderI } from './orders.model';
 import { Response, Request } from 'express';
 import { Cache } from 'cache-manager';
 
-var redisStore = require('cache-manager-redis-store');
+// var redisStore = require('cache-manager-redis-store');
 
 @Injectable({})
 export class OrdersService {
   constructor(
-    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+    // @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
     @InjectModel('Orders') private readonly orderModel: Model<OrderI>,
     private jwtService: JwtService,
   ) {}

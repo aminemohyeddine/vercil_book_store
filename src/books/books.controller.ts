@@ -21,7 +21,7 @@ import { JwtService } from '@nestjs/jwt';
 @Controller('books')
 export class BooksController {
   constructor(
-    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+    // @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
     private bookService: BooksService,
     private jwtService: JwtService,
   ) {}

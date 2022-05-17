@@ -21,12 +21,12 @@ import { BookI } from './books.model';
 import { Response, Request } from 'express';
 import { Cache } from 'cache-manager';
 
-var redisStore = require('cache-manager-redis-store');
+// var redisStore = require('cache-manager-redis-store');
 
 @Injectable({})
 export class BooksService {
   constructor(
-    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+    // @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
     @InjectModel('Books') private readonly bookModel: Model<BookI>,
     private jwtService: JwtService,
   ) {}
@@ -65,23 +65,24 @@ export class BooksService {
 
   async getAllBooks() {
     const books = await this.bookModel.find({});
-    await this.cacheManager.set('allBooks', books);
-    const cachedBooks = await this.cacheManager.get('allBooks', books);
+    // await this.cacheManager.set('allBooks', books);
+    // const cachedBooks = await this.cacheManager.get('allBooks', books);
     console.log('cachedBooks');
 
-    if (cachedBooks.length > 0) {
-      return cachedBooks;
-    } else {
-      return books;
-    }
+    // if (cachedBooks.length > 0) {
+    //   return cachedBooks;
+    // } else {
+    //   return books;
+    // }
+    return books;
   }
 
   async getBookById(_id: string) {
     const book = await this.bookModel.find({ _id: _id });
-    await this.cacheManager.set('singlebook', book, {
-      ttl: 60,
-    });
-    const data = await this.cacheManager.get('singlebook');
+    // await this.cacheManager.set('singlebook', book, {
+    //   ttl: 60,
+    // });
+    // const data = await this.cacheManager.get('singlebook');
     return book;
   }
 
